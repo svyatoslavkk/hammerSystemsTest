@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Card, Table, Tag, Tooltip, message, Button } from 'antd';
+import { Card, Table, Tag, Tooltip, message, Button, Spin } from 'antd';
 import { EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import UserView from './UserView';
@@ -23,10 +23,10 @@ export class UserList extends Component {
   fetchUsers = async () => {
     try {
       const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-      this.setState({ users: response.data, loading: false });
-      console.log('Users:', response.data);
+      this.setState({ users: response.data });
     } catch (error) {
       console.error('Error fetching users:', error);
+    } finally {
       this.setState({ loading: false });
     }
   }
@@ -72,30 +72,29 @@ export class UserList extends Component {
 					},
 				},
 			},
+      {
+        title: 'Address',
+        dataIndex: 'address',
+        render: (_, el) => (
+          <span>{el?.address?.city}, {el?.address?.street}, {el?.address?.suite}</span>
+        ),
+      },
+      {
+        title: 'Company',
+        dataIndex: 'company',
+        render: (_, el) => (
+          <span>{el?.company?.name}</span>
+        ),
+        sorter: {
+          compare: (a, b) => a?.company?.name?.length - b?.company?.name?.length,
+        },
+      },
 			{
-				title: 'Role',
-				dataIndex: 'role',
-				sorter: {
-					compare: (a, b) => a?.role.length - b?.role.length,
-				},
-			},
-			{
-				title: 'Last online',
-				dataIndex: 'lastOnline',
-				render: date => (
-					<span>{moment.unix(date).format("MM/DD/YYYY")} </span>
-				),
-				sorter: (a, b) => moment(a.lastOnline).unix() - moment(b.lastOnline).unix()
-			},
-			{
-				title: 'Status',
-				dataIndex: 'status',
-				render: status => (
-					<Tag className ="text-capitalize" color={status === 'active'? 'cyan' : 'red'}>{status}</Tag>
-				),
-				sorter: {
-					compare: (a, b) => a?.status.length - b?.status.length,
-				},
+				title: 'Website',
+				dataIndex: 'website',
+        render: (_, el) => (
+          <span>{el?.website}</span>
+        ),
 			},
 			{
 				title: '',
@@ -114,7 +113,13 @@ export class UserList extends Component {
 		];
 		return (
 			<Card bodyStyle={{'padding': '0px'}}>
-        <Table columns={tableColumns} dataSource={users} rowKey='id' />
+        {loading ? (
+          <Spin spinning={loading}>
+            <Table columns={tableColumns} dataSource={users} rowKey='id' />
+          </Spin>
+        ) : (
+          <Table columns={tableColumns} dataSource={users} rowKey='id' />
+        )}
         <UserView data={selectedUser} visible={userProfileVisible} close={this.closeUserProfile}/>
 			</Card>
 		)

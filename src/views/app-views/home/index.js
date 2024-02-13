@@ -1,5 +1,5 @@
-import React from 'react'
-import UserList from '../pages/user-list'
+import React from 'react';
+import UserList from '../pages/user-list';
 
 const Home = () => {
 	return (

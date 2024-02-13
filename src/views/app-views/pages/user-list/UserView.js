@@ -7,7 +7,6 @@ import {
 	CompassOutlined,
 	CalendarOutlined,
 	FacebookOutlined,
-	InstagramOutlined,
 	TwitterOutlined,
 	GlobalOutlined
 } from '@ant-design/icons';
@@ -26,7 +25,7 @@ export class UserView extends Component {
 				<div className="text-center mt-3">
 					<Avatar size={80} src={data?.img} />
 					<h3 className="mt-2 mb-0">{data?.name}</h3>
-					<span className="text-muted">{data?.personalInfo.title}</span>
+					<span className="text-muted">{data?.company?.name}</span>
 				</div>
 				<Divider dashed />
 				<div className="">
@@ -37,14 +36,14 @@ export class UserView extends Component {
 					</p>
 					<p>
 						<CalendarOutlined />
-						<span className="ml-3 text-dark">Born in {data?.personalInfo.birthday}</span>
+						<span className="ml-3 text-dark">Born in {data?.personalInfo?.birthday}</span>
 					</p>
 				</div>
 				<div className="mt-5">
 					<h6 className="text-muted text-uppercase mb-3">CONTACT</h6>
 					<p>
 						<MobileOutlined />
-						<span className="ml-3 text-dark">{data?.personalInfo.phoneNumber}</span>
+						<span className="ml-3 text-dark">{data?.phone}</span>
 					</p>
 					<p>
 						<MailOutlined />
@@ -52,26 +51,26 @@ export class UserView extends Component {
 					</p>
 					<p>
 						<CompassOutlined />
-						<span className="ml-3 text-dark">{data?.personalInfo.location}</span>
+						<span className="ml-3 text-dark">{data?.address?.city}</span> 
 					</p>
 				</div>
+				
 				<div className="mt-5">
-					<h6 className="text-muted text-uppercase mb-3">Social profiles</h6>
+					<h6 className="text-muted text-uppercase mb-3">Company details</h6>
 					<p>
 						<FacebookOutlined />
-						<a href="/#" className="ml-3 text-dark">{data?.personalInfo.facebook? data?.personalInfo.facebook : '-'}</a>
+						<span className="ml-3 text-dark">{data?.company?.catchPhrase}</span>
 					</p>
 					<p>
 						<TwitterOutlined />
-						<a href="/#" className="ml-3 text-dark">{data?.personalInfo.twitter? data?.personalInfo.twitter : '-'}</a>
+						<span className="ml-3 text-dark">{data?.company?.bs}</span>
 					</p>
-					<p>
-						<InstagramOutlined />
-						<a href="/#" className="ml-3 text-dark">{data?.personalInfo.instagram? data?.personalInfo.instagram : '-'}</a>
-					</p>
+				</div>
+				<div className="mt-5">
+					<h6 className="text-muted text-uppercase mb-3">Other</h6>
 					<p>
 						<GlobalOutlined />
-						<a href="/#" className="ml-3 text-dark">{data?.personalInfo.site? data?.personalInfo.site : '-'}</a>
+						<a href="/#" className="ml-3 text-dark">{data?.website? data?.website : '-'}</a>
 					</p>
 				</div>
 			</Drawer>
