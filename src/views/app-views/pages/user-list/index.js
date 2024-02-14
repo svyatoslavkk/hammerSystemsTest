@@ -24,7 +24,6 @@ export class UserList extends Component {
     try {
       const response = await axios.get('https://jsonplaceholder.typicode.com/users');
       this.setState({ users: response.data });
-			console.log("response.data", response.data)
     } catch (error) {
       console.error('Error fetching users:', error);
     } finally {

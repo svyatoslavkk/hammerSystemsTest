@@ -9,7 +9,7 @@ import Flex from 'components/shared-components/Flex';
 export class EditProfile extends Component {
   state = {
     avatarUrl: '/img/avatars/thumb-6.jpg',
-    name: 'ывмывмыумым',
+    name: '',
     email: '',
     userName: '',
     phoneNumber: '',
@@ -28,7 +28,6 @@ export class EditProfile extends Component {
 		const userId = this.props.match.params.userId;
     try {
       const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
-			console.log("response.data", response.data)
       const { name, email, username, phone, website, address } = response.data;
       this.setState({
         name: name,
