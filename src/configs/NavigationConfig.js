@@ -24,7 +24,8 @@ import {
   ShoppingCartOutlined,
   BookOutlined,
   FileUnknownOutlined,
-  ProfileOutlined
+  ProfileOutlined,
+  ApartmentOutlined
 } from '@ant-design/icons';
 import { APP_PREFIX_PATH, AUTH_PREFIX_PATH } from 'configs/AppConfig'
 
@@ -92,6 +93,14 @@ const extraNavTree = [
             submenu: []
           }
         ]
+      },
+      {
+        key: 'extra-planner',
+        path: `${APP_PREFIX_PATH}/planner`,
+        title: 'sidenav.planner',
+        icon: ApartmentOutlined,
+        breadcrumb: false,
+        submenu: []
       },
       {
         key: 'extra-auth',

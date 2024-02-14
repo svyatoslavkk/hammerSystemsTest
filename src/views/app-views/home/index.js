@@ -4,7 +4,6 @@ import UserList from '../pages/user-list';
 const Home = () => {
 	return (
 		<div>
-			Home component works!
 			<UserList />
 		</div>
 	)

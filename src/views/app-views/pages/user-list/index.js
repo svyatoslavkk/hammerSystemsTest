@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Table, Tag, Tooltip, message, Button, Spin } from 'antd';
 import { EyeOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -6,7 +7,6 @@ import moment from 'moment';
 import UserView from './UserView';
 import AvatarStatus from 'components/shared-components/AvatarStatus';
 import userData from "assets/data/user-list.data.json";
-import { useDataContext } from 'context/DataContext';
 
 export class UserList extends Component {
 	state = {
@@ -60,9 +60,11 @@ export class UserList extends Component {
 				title: 'User',
 				dataIndex: 'name',
 				render: (_, record) => (
-					<div className="d-flex">
-						<AvatarStatus src={record?.img} name={record?.name} subTitle={record?.email}/>
-					</div>
+					<Link to={`/app/pages/setting/edit-profile/${record.id}`}>
+						<div className="d-flex">
+							<AvatarStatus src={record?.img} name={record?.name} subTitle={record?.email}/>
+						</div>
+					</Link>
 				),
 				sorter: {
 					compare: (a, b) => {
@@ -118,7 +120,7 @@ export class UserList extends Component {
             <Table columns={tableColumns} dataSource={users} rowKey='id' />
           </Spin>
         ) : (
-          <Table columns={tableColumns} dataSource={users} rowKey='id' />
+						<Table columns={tableColumns} dataSource={users} rowKey='id' />
         )}
         <UserView data={selectedUser} visible={userProfileVisible} close={this.closeUserProfile}/>
 			</Card>

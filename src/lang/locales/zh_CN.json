@@ -111,6 +111,8 @@
     "sidenav.pages.setting": "设置",
     "sidenav.pages.userlist": "用户清单",
 
+	"sidenav.planner": "规划师",
+
     "sidenav.authentication": "认证",
 	"sidenav.authentication.login.1": "登录页 1",
 	"sidenav.authentication.login.2": "登录页 2",
