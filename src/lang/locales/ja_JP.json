@@ -111,6 +111,8 @@
     "sidenav.pages.setting": "セッティング",
     "sidenav.pages.userlist": "ユーザーリスト",
 
+	"sidenav.planner": "プランナー",
+
     "sidenav.authentication": "認証",
 	"sidenav.authentication.login.1": "ログイン 1",
 	"sidenav.authentication.login.2": "ログイン 2",
